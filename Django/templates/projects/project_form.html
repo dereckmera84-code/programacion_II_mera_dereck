@@ -3,7 +3,7 @@
 {% block content %}
 <header class="page-heading">
     <p class="eyebrow">Organización</p>
-    <h1>{% if modo == "crear" %}Nuevo proyecto{% else %}Editar proyecto{% endif %}</h1>
+    <h1>{% if modo == "crear" %}Nuevo jugador{% else %}Editar jugador{% endif %}</h1>
 </header>
 
 <form method="post">
@@ -27,7 +27,7 @@
     {% endfor %}
 
     <div class="form-actions">
-        <button type="submit">Guardar proyecto</button>
+        <button type="submit">Guardar jugador</button>
         <a class="button button-secondary" href="{% url 'tasks:projects' %}">Cancelar</a>
     </div>
 </form>

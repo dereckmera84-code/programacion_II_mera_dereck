@@ -57,11 +57,7 @@ class Migration(migrations.Migration):
                 ('porcentaje_victorias', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('porcentaje_empates', models.DecimalField(decimal_places=2, max_digits=5)),
                 ('porcentaje_derrotas', models.DecimalField(decimal_places=2, max_digits=5)),
-                ('goles_anotados_por_partido', models.DecimalField(decimal_places=2, max_digits=4)),
-                ('goles_recibidos_por_partido', models.DecimalField(decimal_places=2, max_digits=4)),
                 ('puntos_por_partido', models.DecimalField(decimal_places=2, max_digits=4)),
-                ('ultimos_resultados', models.CharField(help_text='Secuencia usando G, E y P', max_length=20)),
-                ('fuente', models.CharField(blank=True, max_length=200)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
             options={

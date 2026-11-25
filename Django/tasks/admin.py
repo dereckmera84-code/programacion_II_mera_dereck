@@ -3,14 +3,14 @@ from django.contrib import admin
 from .models import Project, Task
 
 
-admin.site.site_header = "TaskFlow | Administración"
-admin.site.site_title = "Administración TaskFlow"
-admin.site.index_title = "Gestión de proyectos y tareas"
+admin.site.site_header = "NOVACRONIX | Administración"
+admin.site.site_title = "Administración NOVACRONIX"
+admin.site.index_title = "Gestión de jugadores y tareas"
 
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "created_at")
+    list_display = ("name", "edad", "description", "created_at")
     search_fields = ("name", "description")
     ordering = ("name",)
     list_per_page = 25
@@ -34,13 +34,10 @@ from .models import LigaEstadistica
 class LigaEstadisticaAdmin(admin.ModelAdmin):
     list_display = (
         "club",
-        "temporada",
-        "posicion",
-        "puntos",
         "partidos_jugados",
         "victorias",
         "empates",
         "derrotas",
     )
-    list_filter = ("liga", "temporada")
+    list_filter = ("liga",)
     search_fields = ("club",)

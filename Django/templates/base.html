@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}TaskFlow{% endblock %}</title>
+    <title>{% block titulo %}NOVACRONIX{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'tasks/css/estilos.css' %}">
 </head>
 <body>
     <header class="navbar">
-        <strong>TaskFlow</strong>
+        <strong>NOVACRONIX</strong>
         <nav aria-label="Navegación principal">
             <a href="{% url 'tasks:home' %}">Inicio</a>
-            <a href="{% url 'tasks:projects' %}">Proyectos</a>
+            <a href="{% url 'tasks:projects' %}">Jugadores</a>
+            <a href="{% url 'tasks:clubs' %}">Clubs</a>
         </nav>
     </header>
 

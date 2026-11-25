@@ -1,24 +1,36 @@
+from django.db.models import Max
 from django.http import HttpResponse
 
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import ProjectForm, TaskForm
-from .models import Project, Task
+from .models import LigaEstadistica, Project, Task
 
 def Home(request):
     contexto = {
-        "titulo": "TaskFlow",
-        "mensaje": "Organiza tus proyectos y tareas en un solo lugar",
-        "projects": Project.objects.order_by("-created_at"),
+        "titulo": "NOVACRONIX",
+        "mensaje": "Administra por separado los jugadores y los clubs de fútbol.",
     }
     return render(request, "tasks/home.html", contexto)
 
 def project_list(request):
     contexto = {
-        "titulo": "TaskFlow",
-        "mensaje": "Organiza tus proyectos y tareas en un solo lugar",
+        "titulo": "EQUIPOS DE FUTBOL",
+        "mensaje": "Organizacion de jugadores",
         "projects": Project.objects.order_by("-created_at"),
     }
     return render(request, "projects/projects.html", contexto)
+
+
+def club_list(request):
+    contexto = {
+        "clubs": (
+            LigaEstadistica.objects.values("club", "liga")
+            .annotate(created_at=Max("created_at"))
+            .order_by("club", "liga")
+        ),
+    }
+    return render(request, "clubs/club_list.html", contexto)
+
 
 def task_create(request):
     if request.method == "POST":
@@ -50,16 +62,16 @@ def register(request):
 
 def presentacion(request):
     """Presentacion del programador"""
-    return HttpResponse("Si ves esta línea de código, es que hice algo y funcionó - mateo rogeron")
+    return HttpResponse("Si logras ver esto tienes buen ojo")
 
 def greeting(request, nombre):
-    """"Registro de usuarios"""
+    """Registro de usuarios"""
     return HttpResponse(
-        f"Hola, {nombre}. Bienvenido a TaskFlow"
+        f"Hola, {nombre}. Bienvenido a NOVACRONIX"
     )
 
 def destination(request, titulo, nombre, cargo):
-    """"Registro de usuarios"""
+    """Registro de usuarios"""
     return HttpResponse(
         f"Bienvenido,{titulo} {nombre}, su cargo es {cargo}"
     )
@@ -70,16 +82,16 @@ def area_triangulo(request, base, altura):
 
 def my_first_template(request):
     contexto = {
-        "titulo": "TaskFlow",
-        "mensaje": "Organiza tus proyectos y tareas en un solo lugar",
+        "titulo": "EQUIPOS DE FUTBOL",
+        "mensaje": "Organizacion de jugadores",
     }
     return render(request, "tasks/my-first-template.html", contexto)
 
 def leads_like(request):
     contexto = {
         "titulo": "Programador",
-        "nombre": "Mateo Nicolay",
-        "apellido": "Rogeron Maila",
+        "nombre": "Dereck",
+        "apellido": "Mera",
     }
     return render(request, "leads/leads-like.html", contexto)
 

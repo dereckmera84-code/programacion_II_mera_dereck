@@ -65,9 +65,14 @@ class Participacion(models.Model):
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField("Nombre del jugador", max_length=100)
     description = models.TextField(blank=True)
+    edad = models.PositiveSmallIntegerField("Edad", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Jugador"
+        verbose_name_plural = "Jugadores"
 
     def __str__(self):
         return self.name
@@ -85,6 +90,7 @@ class Task(models.Model):
         Project,
         on_delete=models.CASCADE,
         related_name="tasks",
+        verbose_name="Jugador",
     )
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
@@ -103,10 +109,6 @@ class Task(models.Model):
 class LigaEstadistica(models.Model):
     club = models.CharField(max_length=100)
     liga = models.CharField(max_length=100, default="LigaPro")
-    temporada = models.CharField(max_length=20, blank=True)
-    posicion = models.PositiveSmallIntegerField(blank=True, null=True)
-    puesto_grupo = models.CharField(max_length=100, blank=True)
-    puntos = models.PositiveIntegerField()
     partidos_jugados = models.PositiveIntegerField()
     victorias = models.PositiveIntegerField()
     empates = models.PositiveIntegerField()
@@ -114,27 +116,11 @@ class LigaEstadistica(models.Model):
     goles_a_favor = models.PositiveIntegerField()
     goles_en_contra = models.PositiveIntegerField()
     diferencia_goles = models.IntegerField()
-    porcentaje_victorias = models.DecimalField(max_digits=5, decimal_places=2)
-    porcentaje_empates = models.DecimalField(max_digits=5, decimal_places=2)
-    porcentaje_derrotas = models.DecimalField(max_digits=5, decimal_places=2)
-    goles_anotados_por_partido = models.DecimalField(max_digits=4, decimal_places=2)
-    goles_recibidos_por_partido = models.DecimalField(max_digits=4, decimal_places=2)
     puntos_por_partido = models.DecimalField(max_digits=4, decimal_places=2)
-    ultimos_resultados = models.CharField(
-        max_length=20,
-        help_text="Secuencia usando G, E y P",
-    )
-    fuente = models.CharField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["-temporada", "posicion", "club"]
-        constraints = [
-            models.UniqueConstraint(
-                fields=["club", "liga", "temporada"],
-                name="unique_liga_estadistica_club_liga_temporada",
-            )
-        ]
+        ordering = ["club", "liga"]
 
     def __str__(self):
-        return f"{self.club} - {self.temporada or self.liga}"
+        return f"{self.club} - {self.liga}"

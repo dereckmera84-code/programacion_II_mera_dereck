@@ -15,7 +15,12 @@ class TaskForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
-        fields = ["name", "description"]
+        fields = ["name", "description", "edad"]
+        labels = {
+            "name": "Nombre del jugador",
+            "description": "Descripción",
+            "edad": "Edad",
+        }
         widgets = {
             "description": forms.Textarea(attrs={"rows": 4}),
         }

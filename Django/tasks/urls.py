@@ -17,6 +17,7 @@ urlpatterns = [
     path("my-first-template", views.my_first_template, 
         name="my-first-template"),
     path("tasks/projects", views.project_list, name="projects"),
+    path("clubs/", views.club_list, name="clubs"),
     path("projects/new/", views.project_create, name="project_create"),
     path("projects/<int:pk>/edit/", views.project_edit, name="project_edit"),
     path("tasks/new/", views.task_create, name="task_create"),
