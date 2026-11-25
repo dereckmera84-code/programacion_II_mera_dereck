@@ -1,0 +1,6 @@
+# Configuración de ruff para todo el repositorio
+line-length = 100
+extend-exclude = ["**/migrations/**"]
+
+[lint]
+select = ["E", "F", "W", "I", "N"]
