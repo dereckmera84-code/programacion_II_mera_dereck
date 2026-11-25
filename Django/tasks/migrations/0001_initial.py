@@ -12,11 +12,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Project',
+            name='Equipo',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField(blank=True)),
+                ('nombre_equipo', models.CharField(default='Liga de Quito', max_length=100)),
+                ('resumen_campana', models.TextField(blank=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
             ],
         ),

@@ -19,3 +19,22 @@ class TaskAdmin(admin.ModelAdmin):
 class NominaTrabajoAdmin(admin.ModelAdmin):
     list_display = ("nombre_trabajador", "anio_contrato", "sueldo_asignado", "created_at")
     search_fields = ("nombre_trabajador",)
+from django.contrib import admin
+
+from .models import LigaEstadistica
+
+
+@admin.register(LigaEstadistica)
+class LigaEstadisticaAdmin(admin.ModelAdmin):
+    list_display = (
+        "club",
+        "temporada",
+        "posicion",
+        "puntos",
+        "partidos_jugados",
+        "victorias",
+        "empates",
+        "derrotas",
+    )
+    list_filter = ("liga", "temporada")
+    search_fields = ("club",)
