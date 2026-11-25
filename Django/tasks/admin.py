@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Project, NominaTrabajo, Task
+from .models import Project, Task
 
 
 @admin.register(Project)
@@ -15,10 +15,6 @@ class TaskAdmin(admin.ModelAdmin):
     list_filter = ("status", "project")
     search_fields = ("title", "description")
 
-@admin.register(NominaTrabajo)
-class NominaTrabajoAdmin(admin.ModelAdmin):
-    list_display = ("nombre_trabajador", "anio_contrato", "sueldo_asignado", "created_at")
-    search_fields = ("nombre_trabajador",)
 from django.contrib import admin
 
 from .models import LigaEstadistica
