@@ -1,27 +1,39 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INICIO DE PROYECTOS</title>
-</head>
-<body>
-    <p>Bienvenido a {{ titulo }}</p>
-    <p>{{ mensaje }}</p>
+{% extends "base.html" %}
 
-    <table>
-        <tr>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Fecha</th>
-        </tr>
-        {% for project in projects %}
-        <tr>
-            <td>{{ project.name }}</td>
-            <td>{{ project.description }}</td>
-            <td>{{ project.created_at }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% block titulo %}Inicio | {{ titulo }}{% endblock %}
+
+{% block content %}
+<header class="page-heading">
+    <p class="eyebrow">Tu espacio de trabajo</p>
+    <h1>Bienvenido a {{ titulo }}</h1>
+    <p class="intro">{{ mensaje }}</p>
+</header>
+
+<section class="panel">
+    <h2>Proyectos recientes</h2>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.name }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ project.created_at|date:"d/m/Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">Todavía no hay proyectos. Crea uno para empezar.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

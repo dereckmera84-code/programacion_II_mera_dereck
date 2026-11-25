@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="{% static 'tasks/css/estilos.css' %}">
 </head>
 <body>
-    <nav class="navbar">
+    <header class="navbar">
         <strong>TaskFlow</strong>
-        <a href="{% url 'tasks:home' %}">Inicio</a>
-    </nav>
+        <nav aria-label="Navegación principal">
+            <a href="{% url 'tasks:home' %}">Inicio</a>
+            <a href="{% url 'tasks:projects' %}">Proyectos</a>
+        </nav>
+    </header>
 
     <main class="contenido">
         {% block content %}{% endblock %}

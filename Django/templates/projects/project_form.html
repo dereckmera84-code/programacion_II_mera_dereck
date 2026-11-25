@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{% if modo == "crear" %}Nueva tarea{% else %}Editar tarea{% endif %}</h1>
+<header class="page-heading">
+    <p class="eyebrow">Organización</p>
+    <h1>{% if modo == "crear" %}Nuevo proyecto{% else %}Editar proyecto{% endif %}</h1>
+</header>
 
 <form method="post">
     {% csrf_token %}
@@ -23,7 +26,9 @@
         </div>
     {% endfor %}
 
-    <button type="submit">Guardar</button>
-    <a href="{% url 'tasks:projects' %}">Cancelar</a>
+    <div class="form-actions">
+        <button type="submit">Guardar proyecto</button>
+        <a class="button button-secondary" href="{% url 'tasks:projects' %}">Cancelar</a>
+    </div>
 </form>
 {% endblock %}
