@@ -64,48 +64,6 @@ class Participacion(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Project(models.Model):
-    name = models.CharField("Nombre del jugador", max_length=100)
-    description = models.TextField(blank=True)
-    edad = models.PositiveSmallIntegerField("Edad", blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Jugador"
-        verbose_name_plural = "Jugadores"
-
-    def __str__(self):
-        return self.name
-
-
-class Task(models.Model):
-    class Status(models.TextChoices):
-        TODO = "TODO", "Por hacer"
-        IN_PROGRESS = "IN_PROGRESS", "En progreso"
-        DONE = "DONE", "Completada"
-
-    # ForeignKey: cada Task pertenece a UN Project.
-    # Un Project puede tener MUCHAS Task — relación muchos a uno.
-    project = models.ForeignKey(
-        Project,
-        on_delete=models.CASCADE,
-        related_name="tasks",
-        verbose_name="Jugador",
-    )
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
-    status = models.CharField(
-        max_length=20,
-        choices=Status.choices,
-        default=Status.TODO,
-    )
-    due_date = models.DateField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.title
-
-
 class LigaEstadistica(models.Model):
     club = models.CharField(max_length=100)
     liga = models.CharField(max_length=100, default="LigaPro")

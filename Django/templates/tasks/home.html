@@ -5,20 +5,13 @@
 {% block content %}
 <header class="page-heading">
     <p class="eyebrow">NOVACRONIX</p>
-    <h1>Jugadores y clubs</h1>
+    <h1>Clubs</h1>
     <p class="intro">{{ mensaje }}</p>
 </header>
 
-<div class="dashboard-sections">
-    <section class="panel">
-        <h2>Jugadores</h2>
-        <p>Consulta y registra nombre, descripción, edad y fecha de registro.</p>
-        <a class="button" href="{% url 'tasks:projects' %}">Ver jugadores</a>
-    </section>
-    <section class="panel">
-        <h2>Clubs</h2>
-        <p>Consulta los clubs, su liga y fecha de registro.</p>
-        <a class="button button-secondary" href="{% url 'tasks:clubs' %}">Ver clubs</a>
-    </section>
-</div>
+<section class="panel">
+    <h2>Administración de clubs</h2>
+    <p>Consulta los clubs registrados, su liga y fecha de registro.</p>
+    <a class="button button-secondary" href="{% url 'tasks:clubs' %}">Ver clubs</a>
+</section>
 {% endblock %}

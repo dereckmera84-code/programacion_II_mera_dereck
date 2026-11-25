@@ -1,24 +1,23 @@
+from django.apps import apps
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import LigaEstadistica, Project
+from .models import LigaEstadistica
 
 
-class PlayerAndClubSectionsTests(TestCase):
-    def test_home_links_to_separate_player_and_club_sections(self):
+class ClubOnlyTests(TestCase):
+    def test_home_displays_only_the_club_section(self):
         response = self.client.get(reverse("tasks:home"))
 
-        self.assertContains(response, reverse("tasks:projects"))
         self.assertContains(response, reverse("tasks:clubs"))
+        self.assertNotContains(response, "Jugadores")
 
-    def test_player_list_displays_age_and_description(self):
-        Project.objects.create(name="Jugador de prueba", description="Delantero", edad=22)
+    def test_player_and_task_models_are_removed(self):
+        model_names = {
+            model.__name__ for model in apps.get_app_config("tasks").get_models()
+        }
 
-        response = self.client.get(reverse("tasks:projects"))
-
-        self.assertContains(response, "Jugador de prueba")
-        self.assertContains(response, "Delantero")
-        self.assertContains(response, "22")
+        self.assertTrue({"Project", "Task"}.isdisjoint(model_names))
 
     def test_club_list_displays_unique_club_and_league(self):
         club_data = {
@@ -43,7 +42,7 @@ class PlayerAndClubSectionsTests(TestCase):
         self.assertNotContains(response, "temporada")
         self.assertEqual(response.content.count(b"Club de prueba"), 1)
 
-    def test_removed_league_fields_are_not_in_model(self):
+    def test_removed_club_fields_are_not_in_model(self):
         field_names = {field.name for field in LigaEstadistica._meta.get_fields()}
 
         self.assertTrue(
