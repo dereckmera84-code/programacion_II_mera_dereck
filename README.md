@@ -51,3 +51,8 @@ Los principales aspectos abordados son:
 ---
 
 **Objetivo del repositorio:** documentar el proceso de aprendizaje, almacenar las prácticas académicas y organizar los proyectos desarrollados durante la asignatura de Programación II.
+
+## Contenido
+- Django: proyecto de estadísticas de equipos de fútbol
+- Django2/biblioteca-app: aplicación de biblioteca
+- pyhton: ejercicios de fundamentos y POO
