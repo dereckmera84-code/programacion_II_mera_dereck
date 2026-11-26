@@ -1,0 +1,77 @@
+:root {
+    --primary: #e87828;
+    --secondary: #159bb5;
+    --accent: #f6b77d;
+    --header-bg: #263445;
+    --header-color: #ffffff;
+    --breadcrumbs-bg: #eaf7fa;
+    --breadcrumbs-link-fg: #267789;
+    --link-fg: #12889e;
+    --link-hover-color: #c85c16;
+    --button-bg: #e87828;
+    --button-hover-bg: #c85c16;
+    --default-button-bg: #159bb5;
+    --default-button-hover-bg: #107c91;
+    --body-bg: #f3f6f9;
+    --body-fg: #263445;
+    --hairline-color: #e2e8f0;
+    --selected-row: #eaf7fa;
+    --selected-row-alt: #f5fafb;
+}
+
+#header {
+    box-shadow: 0 4px 16px rgb(38 52 69 / 14%);
+}
+
+#branding #site-name a {
+    font-weight: 800;
+    letter-spacing: -.03em;
+}
+
+#branding #site-name span {
+    margin-left: 8px;
+    color: #b7eaf2;
+    font-size: .82em;
+    font-weight: 500;
+}
+
+#content {
+    padding: 28px clamp(18px, 3vw, 40px);
+}
+
+.module,
+#changelist,
+#changelist-filter {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    font-weight: 700;
+}
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+    border-radius: 7px;
+    font-weight: 700;
+}
+
+#changelist-filter {
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 8px 20px rgb(38 52 69 / 5%);
+}
+
+@media (max-width: 767px) {
+    #content {
+        padding: 18px 12px;
+    }
+
+    #branding #site-name span {
+        display: none;
+    }
+}

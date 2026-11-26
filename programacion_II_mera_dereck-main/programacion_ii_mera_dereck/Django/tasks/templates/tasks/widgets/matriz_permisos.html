@@ -1,0 +1,29 @@
+<div class="matriz-permisos">
+<div class="matriz-modelos">
+<span>Modelos rápidos:</span>
+<button type="button" data-modelo="lectura">Solo lectura</button>
+<button type="button" data-modelo="gestor">Gestor</button>
+<button type="button" data-modelo="todo">Todos los permisos</button>
+<button type="button" data-modelo="nada" class="matriz-limpiar">Limpiar</button>
+</div>
+<div class="matriz-tabla">
+<table>
+<thead>
+<tr>
+<th scope="col">Área</th>
+{% for titulo in widget.acciones %}<th scope="col">{{ titulo }}</th>{% endfor %}
+</tr>
+</thead>
+<tbody>
+{% for fila in widget.filas %}
+<tr>
+<th scope="row">{{ fila.nombre }}</th>
+{% for celda in fila.celdas %}
+<td>{% if celda %}<input type="checkbox" name="{{ widget.name }}" value="{{ celda.id }}" data-accion="{{ celda.accion }}" aria-label="{{ celda.etiqueta }}"{% if celda.marcado %} checked{% endif %}>{% endif %}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>

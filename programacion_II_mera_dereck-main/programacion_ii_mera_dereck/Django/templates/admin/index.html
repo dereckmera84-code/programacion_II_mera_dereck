@@ -1,0 +1,77 @@
+{% extends "admin/base_site.html" %}
+{% load log panel %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block nav-breadcrumbs %}{% endblock %}
+
+{% block content_title %}
+<h1>{{ title }}</h1>
+<p class="panel-subtitulo">Administra las personas, actividades y resultados de tu club desde un solo lugar.</p>
+{% endblock %}
+
+{% block content %}
+{% agrupar_modelos app_list as grupos %}
+<div class="panel-acciones">
+{% if perms.tasks.add_actividad %}<a class="panel-boton panel-principal" href="{% url 'admin:tasks_actividad_add' %}">+ Nueva actividad</a>{% endif %}
+{% if perms.tasks.add_participacion %}<a class="panel-boton panel-borde" href="{% url 'admin:tasks_participacion_add' %}">Registrar participación</a>{% endif %}
+</div>
+<div class="panel-columnas">
+<div class="panel-grupos">
+{% for g in grupos %}
+<section class="panel-grupo" id="{{ g.id }}">
+<header>
+<span class="panel-icono" aria-hidden="true">
+{% if g.id == "personas" %}
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-6 6.5-6s6.5 2.5 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.2c2.6.2 4.5 2.1 4.5 5.3"/></svg>
+{% elif g.id == "actividades" %}
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+{% elif g.id == "resultados" %}
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+{% else %}
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3 8-7.5 9.5-4.5-1.5-7.5-5-7.5-9.5V6z"/><path d="M9 12l2 2 4-4"/></svg>
+{% endif %}
+</span>
+<div>
+<h2>{{ g.titulo }}</h2>
+<p>{{ g.detalle }}</p>
+</div>
+</header>
+{% for f in g.filas %}
+<div class="panel-fila">
+<div>
+<strong>{{ f.name }}</strong>
+<span>{{ f.desc }}</span>
+</div>
+{% if f.admin_url %}<a class="panel-boton panel-borde" href="{{ f.admin_url }}">{% if f.view_only %}Ver{% else %}Ver y editar{% endif %}</a>{% endif %}
+{% if f.add_url %}<a class="panel-boton panel-teal" href="{{ f.add_url }}">+ Agregar</a>{% endif %}
+</div>
+{% endfor %}
+</section>
+{% empty %}
+<p>No tienes permiso para ver ni editar nada.</p>
+{% endfor %}
+</div>
+<aside class="panel-reciente" aria-labelledby="panel-reciente-titulo">
+<header><h2 id="panel-reciente-titulo">Actividad reciente</h2></header>
+{% get_admin_log 10 as admin_log for_user user %}
+{% if not admin_log %}
+<div class="panel-vacio">
+<strong>Aún no hay movimientos</strong>
+<span>Cuando agregues o edites registros, los verás aquí para volver a ellos rápido.</span>
+</div>
+{% else %}
+<ul>
+{% for entry in admin_log %}
+<li>
+{% if entry.is_deletion or not entry.get_admin_url %}{{ entry.object_repr }}{% else %}<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>{% endif %}
+<span>{% if entry.is_addition %}Agregado{% elif entry.is_change %}Editado{% else %}Eliminado{% endif %}{% if entry.content_type %} · {{ entry.content_type.name|capfirst }}{% endif %}</span>
+</li>
+{% endfor %}
+</ul>
+{% endif %}
+</aside>
+</div>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
