@@ -56,3 +56,4 @@ Los principales aspectos abordados son:
 - Django: proyecto de estadísticas de equipos de fútbol
 - Django2/biblioteca-app: aplicación de biblioteca
 - pyhton: ejercicios de fundamentos y POO
+- Las tres carpetas se encuentran dentro de programacion_ii_mera_dereck.
