@@ -1,0 +1,40 @@
+/* Inicio del admin */
+.panel-subtitulo{margin:4px 0 20px;color:#4b5563;font-size:1rem}
+.panel-acciones{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+#content a.panel-boton{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;padding:0 18px;border:1px solid #b9c7d6;border-radius:10px;background:#fff;color:#0f4f5b;font-size:14px;font-weight:600;text-decoration:none}
+#content a.panel-principal{border-color:#2a3547;background:#2a3547;color:#fff}
+#content a.panel-teal{border-color:#0f6b7a;background:#0f6b7a;color:#fff}
+#content a.panel-boton:hover{filter:brightness(1.12)}
+.panel-columnas{display:flex;flex-wrap:wrap;align-items:flex-start;gap:24px}
+.panel-grupos{display:flex;flex:999 1 560px;flex-direction:column;gap:24px;min-width:0}
+.panel-grupo,.panel-reciente{overflow:hidden;border:1px solid #dbe3ec;border-radius:14px;background:#fff;color:#1f2937}
+.panel-grupo>header,.panel-reciente>header{display:flex;align-items:center;gap:14px;padding:18px 20px;background:#e8f0f6}
+.panel-icono{display:flex;flex:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#2a3547;color:#f4b27a}
+.panel-grupo h2,.panel-reciente h2{margin:0;padding:0;background:none;color:#1f2937;font-size:20px;font-weight:700;letter-spacing:0;text-transform:none}
+.panel-grupo header p{margin:2px 0 0;padding:0;color:#4b5563;font-size:14px}
+.panel-fila{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:12px 20px;border-top:1px solid #e5ebf2}
+.panel-fila>div{display:flex;flex:1 1 220px;flex-direction:column;gap:2px;min-width:0}
+.panel-fila strong{font-size:16px}
+.panel-fila span{color:#5b6777;font-size:14px}
+.panel-reciente{flex:1 1 280px;max-width:380px}
+.panel-reciente ul{margin:0;padding:8px 20px 16px;list-style:none}
+.panel-reciente li{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid #e5ebf2}
+.panel-reciente li span{color:#5b6777;font-size:13px}
+.panel-vacio{display:flex;flex-direction:column;gap:6px;margin:20px;padding:20px;border:1px dashed #b9c7d6;border-radius:10px;text-align:center}
+.panel-vacio span{color:#4b5563;font-size:14px;line-height:1.5}
+
+/* Permisos del grupo como tabla */
+.matriz-permisos{max-width:760px;overflow:hidden;border:1px solid #dbe3ec;border-radius:14px;background:#fff;color:#1f2937}
+.matriz-modelos{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 20px}
+.matriz-modelos span{color:#374151;font-size:14px;font-weight:600}
+.matriz-modelos button{min-height:44px;padding:0 16px;border:1px solid #b9c7d6;border-radius:999px;background:#fff;color:#0f4f5b;font-size:14px;font-weight:600;cursor:pointer}
+.matriz-modelos .matriz-limpiar{border-color:transparent;background:none;color:#0f6b7a;text-decoration:underline}
+.matriz-tabla{overflow-x:auto}
+.matriz-tabla table{width:100%;min-width:520px;border-collapse:collapse}
+.matriz-tabla thead th{padding:14px 12px;border:0;background:#2a3547;color:#fff;font-size:14px;font-weight:600;letter-spacing:0;text-align:center;text-transform:none}
+.matriz-tabla tbody tr{border-top:1px solid #e5ebf2}
+.matriz-tabla tbody tr:nth-child(even){background:#f7f9fc}
+.matriz-tabla tbody th{padding:12px 20px;border:0;color:#1f2937;font-size:15px;font-weight:600;text-align:left;vertical-align:middle}
+.matriz-tabla thead th:first-child{padding-left:20px;text-align:left}
+.matriz-tabla td{padding:8px 12px;border:0;text-align:center;vertical-align:middle}
+.matriz-tabla input[type="checkbox"]{width:22px;height:22px;accent-color:#0f6b7a;cursor:pointer}

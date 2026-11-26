@@ -6,6 +6,7 @@
 {% block extrastyle %}
 {{ block.super }}
 <link rel="stylesheet" href="{% static 'tasks/css/admin.css' %}">
+<link rel="stylesheet" href="{% static 'tasks/css/panel.css' %}">
 {% endblock %}
 
 {% block branding %}
@@ -15,3 +16,5 @@
 {% endblock %}
 
 {% block nav-global %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}

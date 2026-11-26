@@ -6,6 +6,10 @@ class Sensei(models.Model):
     edad = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Sensei"
+        verbose_name_plural = "Senseis"
+
     def __str__(self):
         return self.nombre
 
@@ -20,6 +24,10 @@ class Alumno(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     misiones = models.ManyToManyField('Mision', related_name='alumnos', blank=True)
 
+    class Meta:
+        verbose_name = "Alumno"
+        verbose_name_plural = "Alumnos"
+
     def __str__(self):
         return self.nombre
 
@@ -28,6 +36,10 @@ class Perfil(models.Model):
     alumno = models.OneToOneField(Alumno, on_delete=models.CASCADE)
     foto = models.ImageField(upload_to='perfiles/')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Perfil"
+        verbose_name_plural = "Perfiles"
 
     def __str__(self):
         return f"Perfil de {self.alumno}"
@@ -42,6 +54,10 @@ class Mision(models.Model):
     descripcion = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name = "Misión"
+        verbose_name_plural = "Misiones"
+
     def __str__(self):
         return self.nombre
 
@@ -49,6 +65,10 @@ class Mision(models.Model):
 class Estudiante(models.Model):
     nombre = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Estudiante"
+        verbose_name_plural = "Estudiantes"
 
     def __str__(self):
         return self.nombre
@@ -62,6 +82,13 @@ class Actividad(models.Model):
     estudiante = models.ManyToManyField(Estudiante,
                                         through='Participacion')
 
+    class Meta:
+        verbose_name = "Actividad"
+        verbose_name_plural = "Actividades"
+
+    def __str__(self):
+        return self.titulo
+
 
 class Participacion(models.Model):
     estudiante = models.ForeignKey(
@@ -74,6 +101,13 @@ class Participacion(models.Model):
     )
     rol = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Participación"
+        verbose_name_plural = "Participaciones"
+
+    def __str__(self):
+        return f"{self.estudiante} en {self.actividad}"
 
 
 class LigaEstadistica(models.Model):
@@ -91,6 +125,8 @@ class LigaEstadistica(models.Model):
 
     class Meta:
         ordering = ["club", "liga"]
+        verbose_name = "Estadística de la liga"
+        verbose_name_plural = "Estadísticas de la liga"
 
     def __str__(self):
         return f"{self.club} - {self.liga}"
